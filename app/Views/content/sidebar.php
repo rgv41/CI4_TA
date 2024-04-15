@@ -87,8 +87,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item <?= isActive('role', $currentPage) ?>">
-                            <a class="sidebar-link" href="<?= base_url('/dashboard/role') ?>">
+                        <li class="sidebar-item <?= isActive('laporan_pekerjaan', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/laporan_pekerjaan') ?>">
                                 <i class="align-middle" data-feather="list"></i> <span class="align-middle">Laporan Pekerjaan</span>
                             </a>
                         </li>
@@ -105,8 +105,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item <?= isActive('create_antrian', $currentPage) ?>">
-                            <a class="sidebar-link" href="<?= base_url('/dashboard/pasien/antrian_create') ?>">
+                        <li class="sidebar-item <?= isActive('nilai_pemeriksaan', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/karyawan/nilai_pemeriksaan') ?>">
                                 <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Nilai Pemeriksaan</span>
                             </a>
                         </li>
