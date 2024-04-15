@@ -12,4 +12,4 @@ $routes->get('/register', 'Auth::register');
 $routes->post('auth/attemptRegister', 'Auth::attemptRegister');
 $routes->get('/login', 'Auth::login');
 $routes->post('auth/attemptLogin', 'Auth::attemptLogin');
-// $routes->get('auth/logout', 'Auth::logout');
+$routes->get('auth/logout', 'Auth::logout');
