@@ -14,7 +14,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
-	<title>Sistem Kesehatan Ibu & Anak</title>
+	<title>Sistem Manajemen Karyawan</title>
 
 	<link href="<?= base_url('css/app.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
