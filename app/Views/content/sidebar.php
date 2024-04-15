@@ -94,12 +94,6 @@
 							</a>
 						</li>
 
-						<!-- <li class="sidebar-item <?= isActive('antrian', $currentPage) ?>">
-							<a class="sidebar-link" href="<?= base_url('/dashboard/antrian') ?>">
-								<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Antrian</span>
-							</a>
-						</li> -->
-
 						<li class="sidebar-header">
 							Data Pelayanan Kesehatan Ibu
 						</li>
