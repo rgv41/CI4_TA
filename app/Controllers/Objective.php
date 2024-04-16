@@ -17,7 +17,7 @@ class Objective extends BaseController
 	}
 
 	// // Function for Get Data By Id
-	// public function getUserById($id) : string 
+	// public function getObjectiveById($id) : string 
 	// {
 	// 	$userModel = new UserModel();
 	// 	$roleModel = new RoleModel();
@@ -33,25 +33,29 @@ class Objective extends BaseController
 	// 	return view('admin/user_detail', $data);
 	// }
 
-	// // Function for Create User
-	// public function renderPageCreateUser(): string
-	// {
-	// 	$roleModel = new RoleModel();
-	// 	$data['roles'] = $roleModel->findAll();
-	// 	return view('admin/user_create', $data);
-	// }
+	// Function for Create Objective
+	public function renderPageCreateObjective(): string
+	{
+		$objectiveModel = new ObjectiveModel();
+		$data['objectives'] = $objectiveModel->findAll();
 
-	// public function createUser()
-	// {
-	// 	$userModel = new UserModel();
-	// 	$data = $this->request->getPost();
+		$userModel = new UserModel();
+		$data['users'] = $userModel->where('id_role', 2)->findAll();
 
-	// 	if ($userModel->createUser($data)) {
-	// 		return redirect()->to('/dashboard/user')->with('message', 'User berhasil ditambahkan');
-	// 	} else {
-	// 		return redirect()->back()->withInput()->with('errors', $userModel->errors());
-	// 	}
-	// }
+		return view('admin/objective_create', $data);
+	}
+
+	public function createObjective()
+	{
+		$objectiveModel = new ObjectiveModel();
+		$data = $this->request->getPost();
+
+		if ($objectiveModel->createObjeciveModel($data)) {
+			return redirect()->to('/dashboard/objective')->with('message', 'Objective berhasil ditambahkan');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $userModel->errors());
+		}
+	}
 
 	// // Functin for Update Data
 	// public function renderPageUpdateUser($id): string
@@ -77,17 +81,17 @@ class Objective extends BaseController
 	// 	}
 	// }
 
-	// public function deleteUser($id)
-	// {
-	// 	$userModel = new UserModel();
-	// 	if ($userModel->deleteUser($id)) {
-	// 		// Debugging message
-	// 		echo "User deleted successfully";
-	// 		return redirect()->to('/dashboard/user')->with('message', 'User berhasil dihapus');
-	// 	} else {
-	// 		// Debugging message
-	// 		echo "Failed to delete user";
-	// 		return redirect()->back()->with('message', 'Gagal menghapus user');
-	// 	}
-	// }
+	public function deleteObjective($id)
+	{
+		$objectiveModel = new ObjectiveModel();
+		if ($objectiveModel->deleteObjeciveModel($id)) {
+			// Debugging message
+			echo "Objective deleted successfully";
+			return redirect()->to('/dashboard/objective')->with('message', 'Objective berhasil dihapus');
+		} else {
+			// Debugging message
+			echo "Failed to delete objective";
+			return redirect()->back()->with('message', 'Gagal menghapus objective');
+		}
+	}
 }

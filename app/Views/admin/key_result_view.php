@@ -4,7 +4,7 @@
 			<main class="content">
                 <div class="container-fluid p-0">
                 <h5 class="right-aligned" style="float: right">
-                    <a href="#">Home</a> / <a href="#">User</a> / Daftar Key Result
+                    <a href="#">Home</a> / <a href="#">Admin</a> / Daftar Key Result
                 </h5>
                 <h1 class="h3 mb-3"><b>List Key Result</b></h1>
                     <div class="col-md-6 mb-3">
@@ -57,10 +57,10 @@
                                                     <?= $key_result['key_result'] ?>
                                                 </td>
                                                 <td>
-                                                    Q1 : <?= isset($key_result['target_q1']) ? $key_result['target_q1'] : 0 ?>
+                                                    <?= isset($key_result['target_q1']) ? $key_result['target_q1'] : 0 ?>
                                                 </td>
                                                 <td>
-                                                    Q2 : <?= isset($key_result['target_q2']) ? $key_result['target_q2'] : 0 ?>
+                                                    <?= isset($key_result['target_q2']) ? $key_result['target_q2'] : 0 ?>
                                                 </td>
                                                 <td>
                                                     <?= $key_result['unit_target'] ?>
@@ -69,19 +69,19 @@
                                                     <?= $key_result['complexity'] ?>
                                                 </td>
                                                 <td>
-                                                    Q1 : <?= isset($key_result['progress_q1']) ? $key_result['progress_q1'] : 0 ?>
+                                                    <?= isset($key_result['progress_q1']) ? $key_result['progress_q1'] : 0 ?>
                                                 </td>
                                                 <td>
-                                                    Q2 : <?= isset($key_result['progress_q2']) ? $key_result['progress_q2'] : 0 ?>
+                                                    <?= isset($key_result['progress_q2']) ? $key_result['progress_q2'] : 0 ?>
                                                 </td>
                                                 <td>
                                                     <?= isset($key_result['unit_progress']) ? $key_result['unit_progress'] : 0 ?>
                                                 </td>
                                                 <td>
-                                                    Q1 : <?= isset($key_result['assignor_rate_q1']) ? $key_result['assignor_rate_q1'] : 0 ?>
+                                                    <?= isset($key_result['assignor_rate_q1']) ? $key_result['assignor_rate_q1'] : 0 ?>
                                                 </td>
                                                 <td>
-                                                    Q2 : <?= isset($key_result['assignor_rate_q2']) ? $key_result['assignor_rate_q2'] : 0 ?>
+                                                    <?= isset($key_result['assignor_rate_q2']) ? $key_result['assignor_rate_q2'] : 0 ?>
                                                 </td>
                                                 <td>
                                                     <!-- Tambahkan tombol atau link aksi sesuai kebutuhan -->
@@ -121,4 +121,4 @@
             </main>
 
 <?= $this->include('content/footer') ?>
-<script src="<?= base_url('js/role/delete.js')?>"></script>
+<script src="<?= base_url('js/key_result/delete.js')?>"></script>

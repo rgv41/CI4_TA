@@ -88,4 +88,4 @@
             </main>
 
 <?= $this->include('content/footer') ?>
-<script src="<?= base_url('js/role/delete.js')?>"></script>
+<script src="<?= base_url('js/objective/delete.js')?>"></script>
