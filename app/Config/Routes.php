@@ -31,3 +31,5 @@ $routes->post('user/update/(:segment)', 'User::updateUser/$1', ['filter' => 'aut
 $routes->get('/user/delete/(:num)', 'User::deleteUser/$1', ['filter' => 'auth']);
 
 $routes->get('/dashboard/objective', 'Objective::getAllObject', ['filter' => 'auth']);
+
+$routes->get('/dashboard/key_result', 'KeyResult::getAllKeyResult', ['filter' => 'auth']);
