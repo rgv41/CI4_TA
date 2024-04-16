@@ -13,7 +13,7 @@ class UserModel extends Model
     // Untuk Get All
     public function getUserWithRoles()
     {
-        return $this->select('users.*, role.nama_role')
+        return $this->select('users.*, roles.nama_role')
             ->join('roles', 'roles.id_role = users.id_role')
             ->findAll();
     }

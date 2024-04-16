@@ -87,9 +87,27 @@
                             </a>
                         </li>
 
+						<li class="sidebar-item <?= isActive('role', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/role') ?>">
+                                <i class="align-middle" data-feather="users"></i> <span class="align-middle">Role</span>
+                            </a>
+                        </li>
+
+						<li class="sidebar-item <?= isActive('objective', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/objective') ?>">
+                                <i class="align-middle" data-feather="file"></i> <span class="align-middle">Objective</span>
+                            </a>
+                        </li>
+
+						<li class="sidebar-item <?= isActive('key_result', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/key_result') ?>">
+                                <i class="align-middle" data-feather="file"></i> <span class="align-middle">Key Result</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item <?= isActive('laporan_pekerjaan', $currentPage) ?>">
                             <a class="sidebar-link" href="<?= base_url('/dashboard/laporan_pekerjaan') ?>">
-                                <i class="align-middle" data-feather="list"></i> <span class="align-middle">Laporan Pekerjaan</span>
+                                <i class="align-middle" data-feather="list"></i> <span class="align-middle">Rekap Laporan Pekerjaan</span>
                             </a>
                         </li>
 
@@ -113,8 +131,20 @@
 
                         <!-- Tambahkan item sidebar khusus pasien di sini sesuai kebutuhan -->
                     <?php else : ?>
-                        <li class="sidebar-item">
-                            <span class="sidebar-link">Anda tidak memiliki akses</span>
+                        <li class="sidebar-header">
+                            Submenu Assigner
+                        </li>
+
+                        <li class="sidebar-item <?= isActive('profile', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/profile') ?>">
+                                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item <?= isActive('nilai_pemeriksaan', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/assign/nilai_pemeriksaan') ?>">
+                                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Nilai Pemeriksaan</span>
+                            </a>
                         </li>
                     <?php endif; ?>
 
