@@ -152,12 +152,12 @@
 
                 <div class="sidebar-cta">
                     <div class="sidebar-cta-content">
-                        <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+                        <strong class="d-inline-block mb-2">SIMANKA POS</strong>
                         <div class="mb-3 text-sm">
-                            Are you looking for more components? Check out our premium version.
+                            SIMANKA POS adalah Sistem Manajemen Karyawan untuk Melihat Kinerja Karyawan POS.
                         </div>
                         <div class="d-grid">
-                            <a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
+                            <a href="https://www.posindonesia.co.id/id" class="btn btn-primary">PT POS IND</a>
                         </div>
                     </div>
                 </div>
