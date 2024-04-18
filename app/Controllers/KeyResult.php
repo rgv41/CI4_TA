@@ -87,6 +87,16 @@ class KeyResult extends BaseController
 		}
 	}
 
+	// Function Update Key Result for Admin
+	public function renderPageUpdateKeyResultByAdmin($id): string
+	{
+		$krModel = new KeyResultModel();
+
+		$data['key_results'] = $krModel->find($id);
+		
+		return view('admin/key_result_update', $data);
+	}
+
 	// Function for Assign Data
 	public function renderPageAssignKeyResult($id): string
 	{
@@ -107,6 +117,19 @@ class KeyResult extends BaseController
 
 		$data['key_results'] = $key_result;
 		return view('karyawan/nilai_kr_update', $data);
+	}
+
+	// Function Update Key Result by Admin
+	public function updateKeyResultByAdmin($id)
+	{
+		$krModel = new KeyResultModel();
+		$data = $this->request->getPost();
+
+		if ($krModel->updateKeyResultsModel($id, $data)) {
+			return redirect()->to('/dashboard/key_result')->with('message', 'Key result berhasil diupdate');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $krModel->errors());
+		}
 	}
 
 	public function updateKeyResult($id)

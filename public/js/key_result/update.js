@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Tangkap formulir
-    const form = document.querySelector('#updateRole');
+    const form = document.querySelector('#updateKeyResult');
 
     // Tambahkan event listener untuk event submit
     form.addEventListener('submit', function(event) {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Tampilkan SweetAlert konfirmasi
         Swal.fire({
             title: 'Konfirmasi',
-            text: 'Apakah Anda yakin ingin mengubah jenis user ini?',
+            text: 'Apakah Anda yakin ingin mengubah key result ini?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Ya',
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.submit();
                 Swal.fire({
                     title: 'Sukses!',
-                    text: 'Berhasil diubah jenis user ini.',
+                    text: 'Berhasil diubah key result ini.',
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 1500
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 Swal.fire({
                     title: 'Gagal!',
-                    text: 'Gagal mengubah jenis user ini.',
+                    text: 'Gagal mengubah key result ini.',
                     icon: 'error'
                 })
             }

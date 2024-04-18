@@ -41,6 +41,8 @@ $routes->get('/objective/delete/(:num)', 'Objective::deleteObjective/$1', ['filt
 $routes->get('/dashboard/key_result', 'KeyResult::getAllKeyResult', ['filter' => 'auth']);
 $routes->get('/dashboard/key_result/add', 'KeyResult::renderPageCreateKeyResult', ['filter' => 'auth']);
 $routes->post('/key_result/create', 'KeyResult::createKeyResult', ['filter' => 'auth']);
+$routes->get('/dashboard/key_result/update/(:segment)', 'KeyResult::renderPageUpdateKeyResultByAdmin/$1', ['filter' => 'auth']);
+$routes->post('key_result/update/(:segment)', 'KeyResult::updateKeyResultByAdmin/$1', ['filter' => 'auth']);
 $routes->get('/key_result/delete/(:num)', 'KeyResult::deleteKeyResult/$1', ['filter' => 'auth']);
 
 // Routes Karyawan
