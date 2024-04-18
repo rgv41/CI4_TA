@@ -28,6 +28,16 @@ class KeyResult extends BaseController
         return view('karyawan/nilai_kr_view', $data);
     }
 
+	public function getKeyResultByAssign(): string
+	{
+		$krModel = new KeyResultModel();
+		$assignId = session()->get('id_user');
+
+		$data['key_results'] = $krModel->getKeyResultByAssigner($assignId);
+
+		return view('assigner/nilai_kr_view', $data);
+	}
+
 	// Function for Get Key Result By Id
 	public function getKeyResultById($id) : string 
 	{
@@ -37,6 +47,17 @@ class KeyResult extends BaseController
 
 		$data['key_results'] = $key_result;
 		return view('karyawan/nilai_kr_detail', $data);
+	}
+
+	// Function untuk Get Key Result By Id (Assign)
+	public function getKeyResultByIdForAssign($id) : string 
+	{
+		$krModel = new KeyResultModel();
+		$assignId = session()->get('id_user');
+		$key_result = $krModel->getKeyResultByAssignerById($assignId, $id);
+
+		$data['key_results'] = $key_result;
+		return view('assigner/nilai_kr_detail', $data);
 	}
 
 	// Function for Create Key Result
@@ -66,6 +87,17 @@ class KeyResult extends BaseController
 		}
 	}
 
+	// Function for Assign Data
+	public function renderPageAssignKeyResult($id): string
+	{
+		$krModel = new KeyResultModel();
+		$assignId = session()->get('id_user');
+		$key_result = $krModel->getKeyResultByAssignerById($assignId, $id);
+
+		$data['key_results'] = $key_result;
+		return view('assigner/nilai_kr_assign', $data);
+	}
+
 	// Functin for Update Data
 	public function renderPageUpdateKeyResult($id): string
 	{
@@ -84,6 +116,18 @@ class KeyResult extends BaseController
 
 		if ($krModel->updateKeyResultsModel($id, $data)) {
 			return redirect()->to('/dashboard/karyawan/nilai_pemeriksaan')->with('message', 'Key Result berhasil diupdate');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $krModel->errors());
+		}
+	}
+
+	public function assignKeyResult($id)
+	{
+		$krModel = new KeyResultModel();
+		$data = $this->request->getPost();
+
+		if ($krModel->updateKeyResultsModel($id, $data)) {
+			return redirect()->to('/dashboard/assign/nilai_pemeriksaan')->with('message', 'Key Result berhasil diupdate');
 		} else {
 			return redirect()->back()->withInput()->with('errors', $krModel->errors());
 		}

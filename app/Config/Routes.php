@@ -49,3 +49,10 @@ $routes->get('/dashboard/karyawan/nilai_pemeriksaan/detail/(:segment)', 'KeyResu
 $routes->get('/dashboard/karyawan/nilai_pemeriksaan/update/(:segment)', 'KeyResult::renderPageUpdateKeyResult/$1', ['filter' => 'auth']);
 $routes->post('karyawan/nilai_pemeriksaan/update/(:segment)', 'KeyResult::updateKeyResult/$1', ['filter' => 'auth']);
 $routes->get('/dashboard/karyawan/profil', 'User::getUserBySession', ['filter' => 'auth']);
+
+// Routes Assigner
+$routes->get('/dashboard/assign/profil', 'User::getAssignerBySession', ['filter' => 'auth']);
+$routes->get('/dashboard/assign/nilai_pemeriksaan', 'KeyResult::getKeyResultByAssign', ['filter' => 'auth']);
+$routes->get('/dashboard/assign/nilai_pemeriksaan/detail/(:segment)', 'KeyResult::getKeyResultByIdForAssign/$1', ['filter' => 'auth']);
+$routes->get('/dashboard/assign/nilai_pemeriksaan/update/(:segment)', 'KeyResult::renderPageAssignKeyResult/$1', ['filter' => 'auth']);
+$routes->post('assign/nilai_pemeriksaan/update/(:segment)', 'KeyResult::assignKeyResult/$1', ['filter' => 'auth']);

@@ -125,7 +125,7 @@
 
                         <li class="sidebar-item <?= isActive('nilai_pemeriksaan', $currentPage) ?>">
                             <a class="sidebar-link" href="<?= base_url('/dashboard/karyawan/nilai_pemeriksaan') ?>">
-                                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Nilai Pemeriksaan</span>
+                                <i class="align-middle" data-feather="list"></i> <span class="align-middle">Nilai Pemeriksaan</span>
                             </a>
                         </li>
 
@@ -136,14 +136,14 @@
                         </li>
 
                         <li class="sidebar-item <?= isActive('profile', $currentPage) ?>">
-                            <a class="sidebar-link" href="<?= base_url('/dashboard/profile') ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/assign/profil') ?>">
                                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item <?= isActive('nilai_pemeriksaan', $currentPage) ?>">
                             <a class="sidebar-link" href="<?= base_url('/dashboard/assign/nilai_pemeriksaan') ?>">
-                                <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Nilai Pemeriksaan</span>
+                                <i class="align-middle" data-feather="list"></i> <span class="align-middle">Nilai Key Result</span>
                             </a>
                         </li>
                     <?php endif; ?>

@@ -44,6 +44,11 @@
 				<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 					<img src="<?= base_url('img/avatars/avatar.jpg') ?>" class="avatar img-fluid rounded-circle me-1" alt="Karyawan" /> <span class="text-dark">Karyawan</span>
 				</a>
+				<!-- Jika userRole adalah 3 (Assigner) -->
+				<?php elseif ($userRole['id_role'] == 3) : ?>
+				<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+					<img src="<?= base_url('img/avatars/avatar.jpg') ?>" class="avatar img-fluid rounded-circle me-1" alt="Assigner" /> <span class="text-dark">Assigner</span>
+				</a>
 				<?php else : ?>
                     <li class="sidebar-item">
                         <span class="sidebar-link">Anda tidak memiliki akses</span>

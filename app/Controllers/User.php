@@ -32,6 +32,21 @@ class User extends BaseController
 		return view('karyawan/profil_view', $data);
 	}
 	
+	// Function for Get Data Assigner By Session
+	public function getAssignerBySession() : string
+	{
+		$userModel = new UserModel();
+		$roleModel = new RoleModel();
+		$userId = session()->get('id_user');
+	
+		$userData = $userModel->find($userId);
+		$role = $roleModel->find($userData['id_role']);
+		$userData['role_name'] = $role ? $role['nama_role'] : '';
+
+		$data['user'] = $userData;
+	
+		return view('assigner/profil_view', $data);
+	}
 
 	// Function for Get Data By Id
 	public function getUserById($id) : string 
