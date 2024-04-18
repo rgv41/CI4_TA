@@ -118,7 +118,7 @@
                         </li>
 
                         <li class="sidebar-item <?= isActive('profile', $currentPage) ?>">
-                            <a class="sidebar-link" href="<?= base_url('/dashboard/profile') ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/karyawan/profil') ?>">
                                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                             </a>
                         </li>

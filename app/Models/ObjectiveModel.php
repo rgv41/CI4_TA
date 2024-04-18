@@ -18,17 +18,17 @@ class ObjectiveModel extends Model
             ->findAll();
     }
 
-    public function createObjeciveModel($data)
+    public function createObjectiveModel($data)
     {
         return $this->insert($data);
     }
 
-    public function updateObjeciveModel($id, $data)
+    public function updateObjectiveModel($id, $data)
     {
         return $this->update($id, $data);
     }
 
-    public function deleteObjeciveModel($id)
+    public function deleteObjectiveModel($id)
     {
         return $this->delete($id);
     }

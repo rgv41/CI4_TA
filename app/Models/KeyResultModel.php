@@ -19,6 +19,16 @@ class KeyResultModel extends Model
             ->findAll();
     }
 
+    // Untuk Get Data By User
+    public function getKeyResultWithAssignByUser($userId)
+    {
+        return $this->select('key_results.*, users.nama_user, objectives.objective')
+            ->join('users', 'users.id_user = key_results.id_assignor')
+            ->join('objectives', 'objectives.id_objective = key_results.id_objective')
+            ->where('users.id_user', $userId)
+            ->findAll();
+    }
+
     public function createKeyResultsModel($data)
     {
         return $this->insert($data);

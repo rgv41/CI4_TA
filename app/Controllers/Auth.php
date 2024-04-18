@@ -50,12 +50,27 @@ class Auth extends BaseController
 			$pass = $user['password'];
 			$authenticatePassword = password_verify($password, $pass);
 			if ($authenticatePassword) {
+				// Save user data in cookies
+				$cookie = [
+					'name'   => 'user_data',
+					'value'  => json_encode([
+						'id_user' => $user['id_user'],
+						'username' => $user['username'],
+					]),
+					'expire' => '3600',
+					'secure' => true,
+				];
+				helper('cookie');
+				set_cookie($cookie);
+
+				// Set user data in session
 				$ses_data = [
 					'id_user' => $user['id_user'],
 					'username' => $user['username'],
 					'logged_in' => TRUE
 				];
 				$session->set($ses_data);
+
 				return redirect()->to('/dashboard');
 			} else {
 				$session->setFlashdata('msg', 'Password salah');

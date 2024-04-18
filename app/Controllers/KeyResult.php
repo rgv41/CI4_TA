@@ -17,6 +17,17 @@ class KeyResult extends BaseController
 		return view('admin/key_result_view', $data);
 	}
 
+	// Function for Get All Data By User
+	public function getKeyResultByUser(): string
+    {
+        $krModel = new KeyResultModel();
+		$userId = session()->get('id_user');
+
+        $data['key_results'] = $krModel->getKeyResultWithAssignByUser($userId);
+
+        return view('karyawan/nilai_kr_detail', $data);
+    }
+
 	// // Function for Get Data By Id
 	// public function getUserById($id) : string 
 	// {

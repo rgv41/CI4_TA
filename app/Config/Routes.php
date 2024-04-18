@@ -31,11 +31,18 @@ $routes->post('user/update/(:segment)', 'User::updateUser/$1', ['filter' => 'aut
 $routes->get('/user/delete/(:num)', 'User::deleteUser/$1', ['filter' => 'auth']);
 
 $routes->get('/dashboard/objective', 'Objective::getAllObject', ['filter' => 'auth']);
+$routes->get('/dashboard/objective/detail/(:segment)', 'Objective::getObjectiveById/$1', ['filter' => 'auth']);
 $routes->get('/dashboard/objective/add', 'Objective::renderPageCreateObjective', ['filter' => 'auth']);
 $routes->post('/objective/create', 'Objective::createObjective', ['filter' => 'auth']);
+$routes->get('/dashboard/objective/update/(:segment)', 'Objective::renderPageUpdateObjective/$1', ['filter' => 'auth']);
+$routes->post('objective/update/(:segment)', 'Objective::updateObjective/$1', ['filter' => 'auth']);
 $routes->get('/objective/delete/(:num)', 'Objective::deleteObjective/$1', ['filter' => 'auth']);
 
 $routes->get('/dashboard/key_result', 'KeyResult::getAllKeyResult', ['filter' => 'auth']);
 $routes->get('/dashboard/key_result/add', 'KeyResult::renderPageCreateKeyResult', ['filter' => 'auth']);
 $routes->post('/key_result/create', 'KeyResult::createKeyResult', ['filter' => 'auth']);
 $routes->get('/key_result/delete/(:num)', 'KeyResult::deleteKeyResult/$1', ['filter' => 'auth']);
+
+// Routes Karyawan
+$routes->get('/dashboard/karyawan/nilai_pemeriksaan', 'KeyResult::getKeyResultByUser', ['filter' => 'auth']);
+$routes->get('/dashboard/karyawan/profil', 'User::getUserBySession', ['filter' => 'auth']);
