@@ -45,4 +45,7 @@ $routes->get('/key_result/delete/(:num)', 'KeyResult::deleteKeyResult/$1', ['fil
 
 // Routes Karyawan
 $routes->get('/dashboard/karyawan/nilai_pemeriksaan', 'KeyResult::getKeyResultByUser', ['filter' => 'auth']);
+$routes->get('/dashboard/karyawan/nilai_pemeriksaan/detail/(:segment)', 'KeyResult::getKeyResultById/$1', ['filter' => 'auth']);
+$routes->get('/dashboard/karyawan/nilai_pemeriksaan/update/(:segment)', 'KeyResult::renderPageUpdateKeyResult/$1', ['filter' => 'auth']);
+$routes->post('karyawan/nilai_pemeriksaan/update/(:segment)', 'KeyResult::updateKeyResult/$1', ['filter' => 'auth']);
 $routes->get('/dashboard/karyawan/profil', 'User::getUserBySession', ['filter' => 'auth']);

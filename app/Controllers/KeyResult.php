@@ -25,25 +25,19 @@ class KeyResult extends BaseController
 
         $data['key_results'] = $krModel->getKeyResultWithAssignByUser($userId);
 
-        return view('karyawan/nilai_kr_detail', $data);
+        return view('karyawan/nilai_kr_view', $data);
     }
 
-	// // Function for Get Data By Id
-	// public function getUserById($id) : string 
-	// {
-	// 	$userModel = new UserModel();
-	// 	$roleModel = new RoleModel();
-	// 	$user = $userModel->find($id);
+	// Function for Get Key Result By Id
+	public function getKeyResultById($id) : string 
+	{
+		$krModel = new KeyResultModel();
+		$userId = session()->get('id_user');
+		$key_result = $krModel->getKeyResultByUserById($userId, $id);
 
-	// 	if (!$user) {
-	// 		return 'User not found';
-	// 	}
-
-	// 	$role = $roleModel->find($user['id_role']);
-	// 	$user['role_name'] = $role ? $role['nama_role'] : '';
-	// 	$data['user'] = $user;
-	// 	return view('admin/user_detail', $data);
-	// }
+		$data['key_results'] = $key_result;
+		return view('karyawan/nilai_kr_detail', $data);
+	}
 
 	// Function for Create Key Result
 	public function renderPageCreateKeyResult(): string
@@ -72,29 +66,28 @@ class KeyResult extends BaseController
 		}
 	}
 
-	// // Functin for Update Data
-	// public function renderPageUpdateUser($id): string
-	// {
-	// 	$userModel = new UserModel();
-	// 	$roleModel = new RoleModel();
+	// Functin for Update Data
+	public function renderPageUpdateKeyResult($id): string
+	{
+		$krModel = new KeyResultModel();
+		$userId = session()->get('id_user');
+		$key_result = $krModel->getKeyResultByUserById($userId, $id);
 
-	// 	$data['user'] = $userModel->find($id);
-	// 	$data['roles'] = $roleModel->findAll();
-		
-	// 	return view('admin/user_update', $data);
-	// }
+		$data['key_results'] = $key_result;
+		return view('karyawan/nilai_kr_update', $data);
+	}
 
-	// public function updateUser($id)
-	// {
-	// 	$userModel = new UserModel();
-	// 	$data = $this->request->getPost();
+	public function updateKeyResult($id)
+	{
+		$krModel = new KeyResultModel();
+		$data = $this->request->getPost();
 
-	// 	if ($userModel->updateUserModel($id, $data)) {
-	// 		return redirect()->to('/dashboard/user')->with('message', 'User berhasil diupdate');
-	// 	} else {
-	// 		return redirect()->back()->withInput()->with('errors', $userModel->errors());
-	// 	}
-	// }
+		if ($krModel->updateKeyResultsModel($id, $data)) {
+			return redirect()->to('/dashboard/karyawan/nilai_pemeriksaan')->with('message', 'Key Result berhasil diupdate');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $krModel->errors());
+		}
+	}
 
 	public function deleteKeyResult($id)
 	{

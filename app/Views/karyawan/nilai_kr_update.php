@@ -5,12 +5,12 @@
 			<main class="content">
                 <div class="container-fluid p-0">
                 <h5 class="right-aligned" style="float: right">
-                    <a href="#">Home</a> / <a href="#">Karyawan</a> / Detail Nilai Pemeriksaan Key Result
+                    <a href="#">Home</a> / <a href="#">Karyawan</a> / Update Nilai Pemeriksaan Key Result
                 </h5>
-                <h1 class="h3 mb-3"><b>Detail Nilai Pemeriksaan Key Result</b></h1>
+                <h1 class="h3 mb-3"><b>Update Nilai Pemeriksaan Key Result</b></h1>
                     <div class="row">
                         <div class="col-12">
-                        <form>
+                        <form id="updateKeyResult" action="<?= base_url('karyawan/nilai_pemeriksaan/update/' . $key_results['id_kr']) ?>" method="post">
                             <div class="card">
                             <div class="card-body">
                                 <!-- Inputan Objective -->
@@ -36,33 +36,34 @@
                                         <!-- Inputan Q1 -->
                                         <h5 class="card-title mt-2">Q1</h5>
                                         <input
-                                            type="text"
+                                            type="number"
                                             class="form-control"
                                             id="progress_q1" name="progress_q1"
-                                            value="<?= is_null($key_results['progress_q1']) ? 'Belum Diisi' : esc($key_results['progress_q1']) ?>"
-                                            disabled/>
+                                            value="<?=esc($key_results['progress_q1']) ?>"
+                                            />
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan Q2 -->
                                         <h5 class="card-title mt-2">Q2</h5>
                                         <input
-                                            type="text"
+                                            type="number"
                                             class="form-control"
                                             id="progress_q2"
                                             name="progress_q2"
-                                            value="<?= is_null($key_results['progress_q2']) ? 'Belum Diisi' : esc($key_results['progress_q2']) ?>"
-                                            disabled/>
+                                            value="<?=esc($key_results['progress_q2']) ?>"
+                                            />
                                     </div>
                                 </div>
 
                                 <!-- Inputan Unit Progress -->
                                 <h5 class="card-title mt-2">Unit Progress</h5>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="unit_progress" name="unit_progress"
-                                value="<?= is_null($key_results['unit_progress']) ? 'Belum Diisi' : esc($key_results['unit_progress']) ?>"
-                                disabled/>
+                                        <select id="unit_progress" name="unit_progress" class="form-control">
+                                            <option selected>Pilih Unit Progress</option>
+                                            <option value="Rupiah">Rupiah</option>
+                                            <option value="Laporan">Laporan</option>
+                                            <option value="Persen">Persen</option>
+                                            <option value="Kegiatan">Kegiatan</option>
+                                        </select>
 
                                 <!-- Button Submit -->
                                 <div
@@ -71,17 +72,17 @@
                                     text-align: right;
                                     margin-top: 20px;
                                 ">
-                                <a href="#"
+                                <a onclick="history.back()"
                                     type="button"
-                                    onclick="history.back()"
                                     class="btn btn-info">
-                                    Kembali
+                                    Cancel
                                 </a>
-                                <a href="<?= base_url('/dashboard/karyawan/nilai_pemeriksaan/update/' . $key_results['id_kr']) ?>"
-                                    type="button"
-                                    class="btn btn-primary">
-                                    Edit
-                                </a>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    id="submitButton">
+                                    Simpan
+                                </button>
                                 </div>
                             </div>
                             </div>
@@ -92,3 +93,4 @@
             </main>
 
 <?= $this->include('content/footer') ?>
+<script src="<?= base_url('js/nilai_key_result/update.js') ?>"></script>

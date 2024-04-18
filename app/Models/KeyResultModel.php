@@ -22,11 +22,28 @@ class KeyResultModel extends Model
     // Untuk Get Data By User
     public function getKeyResultWithAssignByUser($userId)
     {
-        return $this->select('key_results.*, users.nama_user, objectives.objective')
-            ->join('users', 'users.id_user = key_results.id_assignor')
+        return $this->select('
+            users.id_user, users.nama_user, users.no_hp, users.id_role, users.username, users.password,
+            objectives.id_objective, objectives.objective,
+            key_results.id_kr, key_results.key_result, key_results.target_q1, key_results.target_q2,
+            key_results.unit_target, key_results.complexity, key_results.progress_q1, key_results.progress_q2,
+            key_results.unit_progress, key_results.assignor_rate_q1, key_results.assignor_rate_q2, key_results.id_assignor
+        ')
             ->join('objectives', 'objectives.id_objective = key_results.id_objective')
+            ->join('users', 'users.id_user = objectives.id_user')
             ->where('users.id_user', $userId)
             ->findAll();
+    }
+
+    // Function untuk get data key result berdasarkan user dan id kr
+    public function getKeyResultByUserById($userId, $krId)
+    {
+        return $this->select('users.id_user, users.nama_user, users.no_hp, users.id_role, users.username, users.password, objectives.id_objective, objectives.objective, key_results.id_kr, key_results.key_result, key_results.target_q1, key_results.target_q2, key_results.unit_target, key_results.complexity, key_results.progress_q1, key_results.progress_q2, key_results.unit_progress, key_results.assignor_rate_q1, key_results.assignor_rate_q2, key_results.id_assignor')
+            ->join('objectives', 'objectives.id_objective = key_results.id_objective')
+            ->join('users', 'users.id_user = objectives.id_user')
+            ->where('users.id_user', $userId)
+            ->where('key_results.id_kr', $krId)
+            ->first();
     }
 
     public function createKeyResultsModel($data)
