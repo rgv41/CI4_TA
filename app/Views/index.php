@@ -39,7 +39,7 @@
 					// Ambil data dari model Key Result
 					$keyResultModel = new \App\Models\KeyResultModel();
 					$keyResults = $keyResultModel->getKeyResultWithAssign();
-					?>
+				?>
 
 					<main class="content">
 						<div class="container-fluid p-0">
@@ -118,6 +118,13 @@
 					</main>
 				<!-- Jika userRole adalah 2 (Karyawan) -->
 			  	<?php elseif ($userRole['id_role'] == 2) : ?>
+					<?php
+						// Ambil data dari model Key Result
+						$keyResultModel = new \App\Models\KeyResultModel();
+						$userId = session()->get('id_user');
+
+						$data['key_results'] = $keyResultModel->getKrUserWithoutAssign($userId);
+					?>
 					<main class="content">
 						<div class="container-fluid p-0">
 							<h5 class="right-aligned" style="float: right">
@@ -154,6 +161,48 @@
 
                                     <!-- Fetch Data Start -->
                                     <tbody>
+									<?php foreach ($data['key_results'] as $key_result): ?>
+                                            <tr>
+                                                <td hidden></td>
+                                                <td>
+                                                    <?= $key_result['objective'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['key_result'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['target_q1']) ? $key_result['target_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['target_q2']) ? $key_result['target_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['unit_target'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['complexity'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['progress_q1']) ? $key_result['progress_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['progress_q2']) ? $key_result['progress_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['unit_progress']) ? $key_result['unit_progress'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['assignor_rate_q1']) ? $key_result['assignor_rate_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['assignor_rate_q2']) ? $key_result['assignor_rate_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('/dashboard/karyawan/nilai_pemeriksaan/detail/' . $key_result['id_kr']) ?>" class="btn btn-info">Detail</a>
+                                                    <a href="<?= base_url('/dashboard/karyawan/nilai_pemeriksaan/update/' . $key_result['id_kr']) ?>" class="btn btn-warning">Isi Nilai</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                     <!-- Fetch Data End -->
                                     
@@ -184,6 +233,12 @@
 					</main>
 				<!-- Jika userRole adalah 3 (Assigner) -->
 				<?php elseif ($userRole['id_role'] == 3) : ?>
+					<?php
+						$krModel = new \App\Models\KeyResultModel();
+						$assignId = session()->get('id_user');
+				
+						$data['key_results'] = $krModel->getKrAssignerWithoutAssign($assignId);
+					?>
 					<main class="content">
 						<div class="container-fluid p-0">
 							<h5 class="right-aligned" style="float: right">
@@ -221,6 +276,51 @@
 
                                     <!-- Fetch Data Start -->
                                     <tbody>
+									<?php foreach ($data['key_results'] as $key_result): ?>
+                                            <tr>
+                                                <td hidden></td>
+                                                <td>
+                                                    <?= $key_result['nama_user']?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['objective'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['key_result'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['target_q1']) ? $key_result['target_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['target_q2']) ? $key_result['target_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['unit_target'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= $key_result['complexity'] ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['progress_q1']) ? $key_result['progress_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['progress_q2']) ? $key_result['progress_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['unit_progress']) ? $key_result['unit_progress'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['assignor_rate_q1']) ? $key_result['assignor_rate_q1'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <?= isset($key_result['assignor_rate_q2']) ? $key_result['assignor_rate_q2'] : 0 ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('/dashboard/assign/nilai_pemeriksaan/detail/' . $key_result['id_kr']) ?>" class="btn btn-info">Detail</a>
+                                                    <a href="<?= base_url('/dashboard/assign/nilai_pemeriksaan/update/' . $key_result['id_kr']) ?>" class="btn btn-warning">Isi Nilai</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                     <!-- Fetch Data End -->
                                     
