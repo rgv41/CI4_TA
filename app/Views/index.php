@@ -27,7 +27,21 @@
 
 			<!-- Jika userRole adalah 1 (Admin) -->
 			<?php if ($userRole['id_role'] == 1) : ?>
-				<main class="content">
+				<?php
+					// Ambil data dari model User
+					$userModel = new \App\Models\UserModel();
+					$users = $userModel->getUserWithRoles();
+
+					// Ambil data dari model Objective
+					$objectiveModel = new \App\Models\ObjectiveModel();
+					$objectives = $objectiveModel->getObjectWithRoles();
+
+					// Ambil data dari model Key Result
+					$keyResultModel = new \App\Models\KeyResultModel();
+					$keyResults = $keyResultModel->getKeyResultWithAssign();
+					?>
+
+					<main class="content">
 						<div class="container-fluid p-0">
 							<h5 class="right-aligned" style="float: right">
 								<a href="#">Home</a> / <a href="#">Admin</a> / Dashboard
@@ -49,7 +63,7 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">4</h1>
+												<h1 class="mt-1 mb-3"><?= count($users) ?></h1>
 												<div class="mb-0">
 													<span class="text-muted">Terdiri dari User Admin, Karyawan, dan Assigner.</span>
 												</div>
@@ -70,7 +84,7 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">1</h1>
+												<h1 class="mt-1 mb-3"><?= count($objectives) ?></h1>
 												<div class="mb-0">
 													<span class="text-muted">Jumlah semua objective karyawan.</span>
 												</div>
@@ -91,7 +105,7 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">2</h1>
+												<h1 class="mt-1 mb-3"><?= count($keyResults) ?></h1>
 												<div class="mb-0">
 													<span class="text-muted">Jumlah semua key result karyawan.</span>
 												</div>
