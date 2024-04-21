@@ -27,6 +27,7 @@ class UserModel extends Model
     // Untuk Update Data
     public function updateUserModel($id, $data)
     {
+        $data = $this->passwordHash($data);
         return $this->update($id, $data);
     }
 
