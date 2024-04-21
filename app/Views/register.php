@@ -23,6 +23,10 @@
     										<label class="form-label">Nama Lengkap</label>
     										<input class="form-control form-control-lg" type="text" id="nama_user" name="nama_user" placeholder="Masukkan Nama Lengkap" />
     									</div>
+										<div class="mb-3">
+    										<label class="form-label">Nomor Telepon</label>
+    										<input class="form-control form-control-lg" type="text" id="no_hp" name="no_hp" placeholder="Masukkan Nama Lengkap" />
+    									</div>
     									<div class="mb-3">
     										<label class="form-label">Username</label>
     										<input class="form-control form-control-lg" type="text" id="username" name="username" placeholder="Masukkan Username" />

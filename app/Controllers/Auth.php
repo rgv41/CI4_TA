@@ -21,7 +21,7 @@ class Auth extends BaseController
 			'username' => $this->request->getVar('username'),
 			'password' => $this->request->getVar('password'),
 			'no_hp' => $this->request->getVar('no_hp'),
-			'role' => $this->request->getVar('role'),
+			'role' => 2,
 		];
 
 		if ($authModel->insert($data)) {
