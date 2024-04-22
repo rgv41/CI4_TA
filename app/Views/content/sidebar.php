@@ -105,8 +105,8 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item <?= isActive('laporan_pekerjaan', $currentPage) ?>">
-                            <a class="sidebar-link" href="<?= base_url('/dashboard/laporan_pekerjaan') ?>">
+                        <li class="sidebar-item <?= isActive('rating_output', $currentPage) ?>">
+                            <a class="sidebar-link" href="<?= base_url('/dashboard/rating_output') ?>">
                                 <i class="align-middle" data-feather="list"></i> <span class="align-middle">Rekap Laporan Pekerjaan</span>
                             </a>
                         </li>

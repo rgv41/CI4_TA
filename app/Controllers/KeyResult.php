@@ -168,7 +168,7 @@ class KeyResult extends BaseController
 		];
 
 		// Masukkan data ke dalam tabel rating_outputs
-		if ($roModel->createRatingOuputModel($ratingOutputData)) {
+		if ($roModel->createRatingOutputModel($ratingOutputData)) {
 			// Ambil ID dari data rating_outputs yang baru saja dimasukkan
 			$roId = $roModel->getInsertID();
 

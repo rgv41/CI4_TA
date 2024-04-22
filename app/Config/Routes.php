@@ -45,6 +45,9 @@ $routes->get('/dashboard/key_result/update/(:segment)', 'KeyResult::renderPageUp
 $routes->post('key_result/update/(:segment)', 'KeyResult::updateKeyResultByAdmin/$1', ['filter' => 'auth']);
 $routes->get('/key_result/delete/(:num)', 'KeyResult::deleteKeyResult/$1', ['filter' => 'auth']);
 
+$routes->get('/dashboard/rating_output', 'RatingOutput::getAllRatingOuput', ['filter' => 'auth']);
+$routes->get('/rating_output/delete/(:num)', 'RatingOutput::deleteRatingOutput/$1', ['filter' => 'auth']);
+
 // Routes Karyawan
 $routes->get('/dashboard/karyawan/nilai_pemeriksaan', 'KeyResult::getKeyResultByUser', ['filter' => 'auth']);
 $routes->get('/dashboard/karyawan/nilai_pemeriksaan/detail/(:segment)', 'KeyResult::getKeyResultById/$1', ['filter' => 'auth']);
