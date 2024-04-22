@@ -97,6 +97,28 @@ class User extends BaseController
 		return view('admin/user_update', $data);
 	}
 
+	public function renderPageUpdateKaryawan($id): string
+	{
+		$userModel = new UserModel();
+		$roleModel = new RoleModel();
+
+		$data['user'] = $userModel->find($id);
+		$data['roles'] = $roleModel->findAll();
+		
+		return view('karyawan/profil_update', $data);
+	}
+
+	public function renderPageUpdateAssigner($id): string
+	{
+		$userModel = new UserModel();
+		$roleModel = new RoleModel();
+
+		$data['user'] = $userModel->find($id);
+		$data['roles'] = $roleModel->findAll();
+		
+		return view('assigner/profil_update', $data);
+	}
+
 	public function updateUser($id)
 	{
 		$userModel = new UserModel();
@@ -104,6 +126,30 @@ class User extends BaseController
 
 		if ($userModel->updateUserModel($id, $data)) {
 			return redirect()->to('/dashboard/user')->with('message', 'User berhasil diupdate');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $userModel->errors());
+		}
+	}
+
+	public function updateKaryawan($id)
+	{
+		$userModel = new UserModel();
+		$data = $this->request->getPost();
+
+		if ($userModel->updateUserModel($id, $data)) {
+			return redirect()->to('/dashboard/karyawan/profil')->with('message', 'User berhasil diupdate');
+		} else {
+			return redirect()->back()->withInput()->with('errors', $userModel->errors());
+		}
+	}
+
+	public function updateAssigner($id)
+	{
+		$userModel = new UserModel();
+		$data = $this->request->getPost();
+
+		if ($userModel->updateUserModel($id, $data)) {
+			return redirect()->to('/dashboard/assign/profil')->with('message', 'User berhasil diupdate');
 		} else {
 			return redirect()->back()->withInput()->with('errors', $userModel->errors());
 		}

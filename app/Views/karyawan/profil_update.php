@@ -9,7 +9,7 @@
                 <h1 class="h3 mb-3"><b>Update User</b></h1>
                     <div class="row">
                         <div class="col-12">
-                        <form id="updateUser" action="<?= base_url('user/update/' . $user['id_user']) ?>" method="post">
+                        <form id="updateKaryawan" action="<?= base_url('karyawan/profil/update/' . $user['id_user']) ?>" method="post">
                             <div class="card">
                             <div class="card-body">
                                 <!-- Inputan Nama Lengkap -->
@@ -31,32 +31,6 @@
                                             id="username" name="username"
                                             value="<?= esc($user['username']) ?>"
                                             required/>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <!-- Inputan Password -->
-                                        <h5 class="card-title mt-2">Password</h5>
-                                        <input
-                                            type="password"
-                                            class="form-control"
-                                            id="password"
-                                            name="password"
-                                            value="<?= esc($user['password']) ?>"
-                                            required/>
-                                    </div>
-                                </div>
-
-                                <div class="row mt-1">
-                                    <div class="col-md-6">
-                                        <!-- Inputan Jenis User -->
-                                        <h5 class="card-title mt-2">Jenis User</h5>
-                                        <select id="id_role" name="id_role" class="form-control">
-                                            <option selected>Pilih Jenis User</option>
-                                            <?php foreach ($roles as $role): ?>
-                                                <option value="<?= esc($role['id_role']); ?>" <?= ($role['id_role'] == $user['id_role']) ? 'selected' : '' ?>>
-                                                    <?= esc($role['nama_role']); ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan Nomor Handphone -->
@@ -98,4 +72,4 @@
             </main>
 
 <?= $this->include('content/footer') ?>
-<script src="<?= base_url('js/user/update.js') ?>"></script>
+<script src="<?= base_url('js/user/update_karyawan.js') ?>"></script>

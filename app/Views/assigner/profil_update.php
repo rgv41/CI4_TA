@@ -1,16 +1,15 @@
 <?= $this->include('content/sidebar') ?>
-
 <?= $this->include('content/header') ?>
 
 			<main class="content">
                 <div class="container-fluid p-0">
                 <h5 class="right-aligned" style="float: right">
-                    <a href="#">Home</a> / Profil
+                    <a href="#">Home</a> / <a href="#">User</a> / Update User
                 </h5>
-                <h1 class="h3 mb-3"><b>Profil</b></h1>
+                <h1 class="h3 mb-3"><b>Update User</b></h1>
                     <div class="row">
                         <div class="col-12">
-                        <form>
+                        <form id="updateAssigner" action="<?= base_url('assign/profil/update/' . $user['id_user']) ?>" method="post">
                             <div class="card">
                             <div class="card-body">
                                 <!-- Inputan Nama Lengkap -->
@@ -20,7 +19,7 @@
                                 class="form-control"
                                 id="username" name="username"
                                 value="<?= esc($user['nama_user']) ?>"
-                                disabled/>
+                                required/>
 
                                 <div class="row mt-1">
                                     <div class="col-md-6">
@@ -31,7 +30,7 @@
                                             class="form-control"
                                             id="username" name="username"
                                             value="<?= esc($user['username']) ?>"
-                                            disabled/>
+                                            required/>
                                     </div>
                                     <div class="col-md-6">
                                         <!-- Inputan Nomor Handphone -->
@@ -41,7 +40,7 @@
                                         class="form-control"
                                         id="no_hp" name="no_hp"
                                         value="<?= esc($user['no_hp']) ?>"
-                                        disabled/>
+                                        required/>
                                     </div>
                                 </div>
                                 
@@ -52,17 +51,17 @@
                                     text-align: right;
                                     margin-top: 20px;
                                 ">
-                                <a href="#"
+                                <a onclick="history.back()"
                                     type="button"
-                                    onclick="history.back()"
                                     class="btn btn-info">
-                                    Kembali
+                                    Cancel
                                 </a>
-                                <a href="<?= base_url('/dashboard/karyawan/profil/update/' . $user['id_user']) ?>"
-                                    type="button"
-                                    class="btn btn-primary">
-                                    Edit
-                                </a>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    id="submitButton">
+                                    Simpan
+                                </button>
                                 </div>
                             </div>
                             </div>
@@ -73,3 +72,4 @@
             </main>
 
 <?= $this->include('content/footer') ?>
+<script src="<?= base_url('js/user/update_assigner.js') ?>"></script>

@@ -34,38 +34,14 @@
                                             disabled/>
                                     </div>
                                     <div class="col-md-6">
-                                        <!-- Inputan Password -->
-                                        <h5 class="card-title mt-2">Password</h5>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="password"
-                                            name="password"
-                                            value="<?= esc($user['password']) ?>"
-                                            disabled/>
-                                    </div>
-                                </div>
-
-                                <div class="row mt-1">
-                                    <div class="col-md-6">
-                                            <!-- Inputan Jenis User -->
-                                            <h5 class="card-title mt-2">Jenis User</h5>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="id_role" name="id_role"
-                                                value="<?= esc($user['role_name']) ?>"
-                                                disabled/>
-                                        </div>
-                                    <div class="col-md-6">
                                         <!-- Inputan Nomor Handphone -->
                                         <h5 class="card-title mt-2">Nomor Handphone</h5>
-                                        <input
-                                        type="text"
-                                        class="form-control"
-                                        id="no_hp" name="no_hp"
-                                        value="<?= esc($user['no_hp']) ?>"
-                                        disabled/>
+                                            <input
+                                            type="text"
+                                            class="form-control"
+                                            id="no_hp" name="no_hp"
+                                            value="<?= esc($user['no_hp']) ?>"
+                                            disabled/>
                                     </div>
                                 </div>
                                 
@@ -82,7 +58,7 @@
                                     class="btn btn-info">
                                     Kembali
                                 </a>
-                                <a href="#"
+                                <a href="<?= base_url('/dashboard/assign/profil/update/' . $user['id_user']) ?>"
                                     type="button"
                                     class="btn btn-primary">
                                     Edit
