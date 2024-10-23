@@ -21,6 +21,7 @@ class Kmeansc extends BaseController
         // Ambil data dari rating_outputs
         $ratings = $roModel->findAll();
 
+
         $data = [];
         $userNames = [];
 
