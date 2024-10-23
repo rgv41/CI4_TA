@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 // Routes For Authentification
-$routes->get('/', 'Auth::login');
+$routes->get('/', 'Auth::landing'); // Rute untuk halaman landing page
 $routes->get('/dashboard', 'Home::index', ['filter' => 'auth']);
 $routes->get('/register', 'Auth::register');
 $routes->post('auth/attemptRegister', 'Auth::attemptRegister');
@@ -45,8 +45,11 @@ $routes->get('/dashboard/key_result/update/(:segment)', 'KeyResult::renderPageUp
 $routes->post('key_result/update/(:segment)', 'KeyResult::updateKeyResultByAdmin/$1', ['filter' => 'auth']);
 $routes->get('/key_result/delete/(:num)', 'KeyResult::deleteKeyResult/$1', ['filter' => 'auth']);
 
-$routes->get('/dashboard/rating_output', 'RatingOutput::getAllRatingOuput', ['filter' => 'auth']);
+$routes->get('/dashboard/rating_output', 'RatingOutput::getAllRatingOutput', ['filter' => 'auth']);
 $routes->get('/rating_output/delete/(:num)', 'RatingOutput::deleteRatingOutput/$1', ['filter' => 'auth']);
+
+$routes->get('/clustering_results', 'Kmeansc::performClustering', ['filter' => 'auth']);
+
 
 // Routes Karyawan
 $routes->get('/dashboard/karyawan/nilai_pemeriksaan', 'KeyResult::getKeyResultByUser', ['filter' => 'auth']);

@@ -9,9 +9,9 @@
 
 					<div class="text-center mt-4">
 						<h1 class="h2">Selamat Datang!</h1>
-                        <img src="<?= base_url('img/photos/logo_pos.png') ?>" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">
+						<img src="<?= base_url('img/photos/image.png') ?>" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">
 						<p class="lead">
-							Sistem Manajemen Karyawan Pos
+							Sistem Manajemen Karyawan
 						</p>
 					</div>
 

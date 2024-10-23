@@ -41,5 +41,12 @@ class UserModel extends Model
     {
         return $this->find($id);
     }
+
+    // Metode baru untuk mendapatkan nama pengguna berdasarkan ID
+    public function getUserName($userId)
+    {
+        return $this->select('nama_user')
+            ->where('id_user', $userId)
+            ->first();
+    }
 }
-?>

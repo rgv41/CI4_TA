@@ -18,6 +18,15 @@ class ObjectiveModel extends Model
             ->findAll();
     }
 
+    // Mendapatkan objectives berdasarkan ID karyawan
+    public function getObjectivesByEmployee($employeeId)
+    {
+        return $this->select('objectives.*, users.nama_user')
+            ->join('users', 'users.id_user = objectives.id_user')
+            ->where('objectives.id_user', $employeeId)
+            ->findAll();
+    }
+
     public function createObjectiveModel($data)
     {
         return $this->insert($data);

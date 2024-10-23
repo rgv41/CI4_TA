@@ -1,13 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Tangkap formulir
+document.addEventListener('DOMContentLoaded', function () {
+    const idObjectiveSelect = document.getElementById('id_objective');
+    const objectiveUserInfo = document.getElementById('objective-user-info');
+
+    // Mengupdate informasi user saat objective dipilih
+    idObjectiveSelect.addEventListener('change', function () {
+        const selectedObjective = this.options[this.selectedIndex];
+        const userName = selectedObjective.getAttribute('data-user-name');
+        objectiveUserInfo.textContent = userName ? `Nama User: ${userName}` : '';
+    });
+
+
+
+    // Form submission with SweetAlert
     const form = document.querySelector('#createKeyResult');
-
-    // Tambahkan event listener untuk event submit
-    form.addEventListener('submit', function(event) {
-        // Hentikan pengiriman formulir default
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
-
-        // Tampilkan SweetAlert konfirmasi
         Swal.fire({
             title: 'Konfirmasi',
             text: 'Apakah Anda yakin ingin menambahkan key result ini?',
@@ -16,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmButtonText: 'Ya',
             cancelButtonText: 'Batal'
         }).then((result) => {
-            // Jika pengguna mengonfirmasi, kirimkan formulir
             if (result.isConfirmed) {
                 form.submit();
                 Swal.fire({
@@ -25,13 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
             } else {
                 Swal.fire({
                     title: 'Gagal!',
                     text: 'Gagal menambahkan key result ini.',
                     icon: 'error'
-                })
+                });
             }
         });
     });

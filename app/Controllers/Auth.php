@@ -31,6 +31,11 @@ class Auth extends BaseController
 		}
 	}
 
+	public function landing()
+	{
+		return view('landing');
+	}
+
 	public function login(): string
 	{
 		// Untuk menampilkan view form registrasi

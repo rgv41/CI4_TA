@@ -20,14 +20,14 @@ class KeyResult extends BaseController
 
 	// Function for Get All Data By User
 	public function getKeyResultByUser(): string
-    {
-        $krModel = new KeyResultModel();
+	{
+		$krModel = new KeyResultModel();
 		$userId = session()->get('id_user');
 
-        $data['key_results'] = $krModel->getKeyResultWithAssignByUser($userId);
+		$data['key_results'] = $krModel->getKeyResultWithAssignByUser($userId);
 
-        return view('karyawan/nilai_kr_view', $data);
-    }
+		return view('karyawan/nilai_kr_view', $data);
+	}
 
 	public function getKeyResultByAssign(): string
 	{
@@ -40,7 +40,7 @@ class KeyResult extends BaseController
 	}
 
 	// Function for Get Key Result By Id
-	public function getKeyResultById($id) : string 
+	public function getKeyResultById($id): string
 	{
 		$krModel = new KeyResultModel();
 		$userId = session()->get('id_user');
@@ -51,7 +51,7 @@ class KeyResult extends BaseController
 	}
 
 	// Function untuk Get Key Result By Id (Assign)
-	public function getKeyResultByIdForAssign($id) : string 
+	public function getKeyResultByIdForAssign($id): string
 	{
 		$krModel = new KeyResultModel();
 		$assignId = session()->get('id_user');
@@ -61,21 +61,30 @@ class KeyResult extends BaseController
 		return view('assigner/nilai_kr_detail', $data);
 	}
 
-	// Function for Create Key Result
+	// Metode untuk menampilkan halaman pembuatan Key Result
 	public function renderPageCreateKeyResult(): string
 	{
 		$krModel = new KeyResultModel();
 		$data['key_results'] = $krModel->findAll();
 
 		$objectiveModel = new ObjectiveModel();
-		$data['objectives'] = $objectiveModel->findAll();
+		$data['objectives'] = $objectiveModel->getObjectWithRoles(); // Ambil data dengan nama user
 
 		$userModel = new UserModel();
-		$data['users'] = $userModel->where('id_role', 3)->findAll();
+		$data['assignors'] = $userModel->where('id_role', 3)->findAll(); // Assignor
+		$data['employees'] = $userModel->where('id_role', 2)->findAll(); // Karyawan
 
 		return view('admin/key_result_create', $data);
 	}
 
+
+	// Metode untuk mengambil objectives berdasarkan ID karyawan
+	public function getObjectivesByEmployee($employeeId)
+	{
+		$objectiveModel = new ObjectiveModel();
+		$objectives = $objectiveModel->getObjectivesByEmployee($employeeId);
+		return $this->response->setJSON($objectives);
+	}
 	public function createKeyResult()
 	{
 		$krModel = new KeyResultModel();
@@ -94,7 +103,7 @@ class KeyResult extends BaseController
 		$krModel = new KeyResultModel();
 
 		$data['key_results'] = $krModel->find($id);
-		
+
 		return view('admin/key_result_update', $data);
 	}
 
@@ -149,6 +158,7 @@ class KeyResult extends BaseController
 	{
 		$krModel = new KeyResultModel();
 		$roModel = new RatingOutputModel();
+		$objModel = new ObjectiveModel(); // Tambahkan model Objective
 
 		// Ambil data dari form
 		$data = $this->request->getPost();
@@ -156,15 +166,20 @@ class KeyResult extends BaseController
 		// Ambil key result yang di-assign
 		$keyResult = $krModel->find($id);
 
+		// Ambil id_user dari tabel objectives berdasarkan key result id
+		$objective = $objModel->find($keyResult['id_objective']);
+		$userId = $objective['id_user']; // Ambil id_user dari objective
+
 		// Hitung data Q1 dan Q2
-		$output_target_q1 = ((($keyResult['target_q1'] / $keyResult['progress_q1']) * 100) * 60 >= 60) ? "60.00" : ((($keyResult['target_q1'] / $keyResult['progress_q1']) * 100) * 60);
-		$output_target_q2 = ((($keyResult['target_q2'] / $keyResult['progress_q2']) * 100) * 60 >= 60) ? "60.00" : ((($keyResult['target_q2'] / $keyResult['progress_q2']) * 100) * 60);
+		$output_target_q1 = ((($keyResult['target_q1'] / $keyResult['progress_q1']) * 100) * 60 >= 60) ? 60.00 : ((($keyResult['target_q1'] / $keyResult['progress_q1']) * 100) * 60);
+		$output_target_q2 = ((($keyResult['target_q2'] / $keyResult['progress_q2']) * 100) * 60 >= 60) ? 60.00 : ((($keyResult['target_q2'] / $keyResult['progress_q2']) * 100) * 60);
 
 		// Buat data untuk dimasukkan ke dalam tabel rating_outputs
 		$ratingOutputData = [
 			'id_kr' => $keyResult['id_kr'],
 			'output_target_q1' => $output_target_q1,
 			'output_target_q2' => $output_target_q2,
+			'id_user' => $userId // Tambahkan id_user
 		];
 
 		// Masukkan data ke dalam tabel rating_outputs
@@ -177,25 +192,30 @@ class KeyResult extends BaseController
 			$rating_value_q2 = ((($data['assignor_rate_q2'] * 10) + 60) * 0.4 < 25) ? "" : ((($data['assignor_rate_q2'] * 10) + 60) * 0.4);
 
 			// Hitung okr_score_q1 dan okr_score_q2
-			$okr_score_q1 = $output_target_q1 + $rating_value_q1;
-			$okr_score_q2 = $output_target_q2 + $rating_value_q2;
-
-			// Update rating_value_q1, rating_value_q2, okr_score_q1, dan okr_score_q2 berdasarkan ID yang baru saja dimasukkan
-			if ($keyResult['unit_target'] !== "Rupiah" || $keyResult['unit_target'] !== "Laporan") {
-				$roModel->update($roId, [
-					'rating_value_q1' => $rating_value_q1,
-					'rating_value_q2' => $rating_value_q2,
-					'okr_score_q1' => "",
-					'okr_score_q2' => "",
-				]);
+			if ($rating_value_q1 !== "" && $rating_value_q2 !== "") {
+				$okr_score_q1 = $output_target_q1 + $rating_value_q1;
+				$okr_score_q2 = $output_target_q2 + $rating_value_q2;
 			} else {
-				$roModel->update($roId, [
-					'rating_value_q1' => $rating_value_q1,
-					'rating_value_q2' => $rating_value_q2,
-					'okr_score_q1' => $okr_score_q1,
-					'okr_score_q2' => $okr_score_q2,
-				]);
+				$okr_score_q1 = "";
+				$okr_score_q2 = "";
 			}
+
+			// Hitung overall_okr_score
+			if ($okr_score_q1 !== "" && $okr_score_q2 !== "") {
+				$overall_okr_score = ($okr_score_q1 + $okr_score_q2) / 2;
+			} else {
+				$overall_okr_score = null;
+			}
+
+			// Update rating_value_q1, rating_value_q2, okr_score_q1, okr_score_q2, dan overall_okr_score berdasarkan ID yang baru saja dimasukkan
+			$roModel->update($roId, [
+				'rating_value_q1' => $rating_value_q1,
+				'rating_value_q2' => $rating_value_q2,
+				'okr_score_q1' => $okr_score_q1,
+				'okr_score_q2' => $okr_score_q2,
+				'overall_okr_score' => $overall_okr_score,
+				'id_user' => $userId // Tambahkan id_user saat update
+			]);
 
 			// Update data di tabel key_results
 			if ($krModel->updateKeyResultsModel($id, $data)) {
@@ -207,7 +227,6 @@ class KeyResult extends BaseController
 			return redirect()->back()->withInput()->with('errors', $roModel->errors());
 		}
 	}
-	
 	public function deleteKeyResult($id)
 	{
 		$krModel = new KeyResultModel();

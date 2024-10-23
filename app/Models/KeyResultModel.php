@@ -45,11 +45,11 @@ class KeyResultModel extends Model
         key_results.unit_target, key_results.complexity, key_results.progress_q1, key_results.progress_q2,
         key_results.unit_progress, key_results.assignor_rate_q1, key_results.assignor_rate_q2, key_results.id_assignor
     ')
-        ->join('objectives', 'objectives.id_objective = key_results.id_objective')
-        ->join('users', 'users.id_user = objectives.id_user')
-        ->where('users.id_user', $userId)
-        ->where('key_results.progress_q1 IS NULL')
-        ->findAll();
+            ->join('objectives', 'objectives.id_objective = key_results.id_objective')
+            ->join('users', 'users.id_user = objectives.id_user')
+            ->where('users.id_user', $userId)
+            ->where('key_results.progress_q1 IS NULL')
+            ->findAll();
     }
 
     // Function untuk get key result yg harus dinilai assigner
@@ -78,11 +78,11 @@ class KeyResultModel extends Model
         key_results.unit_target, key_results.complexity, key_results.progress_q1, key_results.progress_q2,
         key_results.unit_progress, key_results.assignor_rate_q1, key_results.assignor_rate_q2, key_results.id_assignor
     ')
-        ->join('objectives', 'objectives.id_objective = key_results.id_objective')
-        ->join('users', 'users.id_user = objectives.id_user')
-        ->where('key_results.id_assignor', $assignId)
-        ->where('key_results.assignor_rate_q1 IS NULL')
-        ->findAll();
+            ->join('objectives', 'objectives.id_objective = key_results.id_objective')
+            ->join('users', 'users.id_user = objectives.id_user')
+            ->where('key_results.id_assignor', $assignId)
+            ->where('key_results.assignor_rate_q1 IS NULL')
+            ->findAll();
     }
 
     // Function untuk get data key result berdasarkan user dan id kr
